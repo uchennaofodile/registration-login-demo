@@ -34,11 +34,11 @@ public class User implements Serializable {
     @Column(nullable=false)
     private String password;
 
-    @ManyToMany(fetch = fetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name="user_roles",
             joinColumns={@JoinColumn(name="USER_ID",referencedColumnName="ID")},
-            inversJoinColumn={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
+            inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
     private List<Role> roles = new ArrayList<>(); //Stores all role entities associated with a user
 
 

@@ -1,16 +1,14 @@
 package com.example.registrationlogindemo.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
+@FieldDefaults(level= AccessLevel.PRIVATE)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,11 +22,11 @@ public class Role implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Column(nullable=false, unique=true)
-    private String name;
+    String name;
 
     @ManyToMany(mappedBy="roles")
-    private List<User> users; //All users that are associated with a particular role
+    List<User> users; //All users that are associated with a particular role
 }

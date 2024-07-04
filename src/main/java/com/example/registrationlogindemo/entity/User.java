@@ -1,16 +1,15 @@
 package com.example.registrationlogindemo.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@FieldDefaults(level= AccessLevel.PRIVATE)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,23 +22,23 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Column(nullable=false)
-    private String name;
+    String name;
 
     @Column(nullable=false, unique=true)
-    private String email;
+    String email;
 
     @Column(nullable=false)
-    private String password;
+    String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name="user_roles",
             joinColumns={@JoinColumn(name="USER_ID",referencedColumnName="ID")},
             inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
-    private List<Role> roles = new ArrayList<>(); //Stores all role entities associated with a user
+     List<Role> roles = new ArrayList<>(); //Stores all role entities associated with a user
 
 
 }

@@ -17,6 +17,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @Service
 public class UserServiceImpl implements UserService {
+
 UserRepository userRepository;
 RoleRepository roleRepository;
 PasswordEncoder passwordEncoder;
